@@ -1,0 +1,20 @@
+# infra/docker-compose.yml
+
+version: '3.8'
+
+services:
+  database_anota_ai:  
+    image: postgres:15
+    container_name: anota_ai_app_postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_ANOTAI}
+      POSTGRES_USER: ${POSTGRES_USER_ANOTAI}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_ANOTAI}
+    ports:
+      - "${POSTGRES_PORT_ANOTAI}:5432"
+    volumes:
+      - postgres_anota_ai_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_anota_ai_data:  
